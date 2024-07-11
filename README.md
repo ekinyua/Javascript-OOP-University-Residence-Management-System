@@ -37,7 +37,7 @@ The JavaScript code uses ES6 classes to model the different entities in the syst
 - `Apartment`: Extends `Residence`, specifically for apartments
 - `Student`: Represents a student
 - `MaintenanceRequest`: Represents a maintenance request submitted by a student
--  Utility functions for local storage
+-  Utility functions: `saveToLocalStorage` and `loadFromLocalStorage` for local storage
 
 ## Future Improvements
 - Implement data persistence ( backend database)

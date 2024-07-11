@@ -20,11 +20,11 @@ class Residence {
 // DormRoom class, inheriting from Residence
 class DormRoom extends Residence {
     constructor(name, address, squareFootage) {
-        super(name, address) // initialize parent class properties
-        this.squareFootage = squareFootage
+        super(name, address); // initialize parent class properties
+        this.squareFootage = squareFootage;
     }
 
-    // calculates the rent for the dorm room ased on its size
+    // calculates the rent for the dorm room based on its size
     calculateRent() {
         return this.squareFootage * 0.5; // $0.5 per square foot
     }
@@ -94,10 +94,10 @@ class Employee {
     }
 }
 
-// initializing arrays
-let residences = [];
-let students = [];
-let maintenanceRequests = [];
+// initializing arrays after all classes are declared
+let residences = loadFromLocalStorage('residences') || [];
+let students = loadFromLocalStorage('students') || [];
+let maintenanceRequests = loadFromLocalStorage('maintenanceRequests') || [];
 
 // Functions
 function addResidence() {
@@ -112,6 +112,7 @@ function addResidence() {
         residences.push(new Apartment(name, address, parseInt(size)));
     }
 
+    saveToLocalStorage('residences', residences);
     log(`Added ${type}: ${name}`);
     updateResidenceSelect();
 }
@@ -124,6 +125,7 @@ function addStudent() {
     let student = new Student(name, id, gender);
     students.push(student);
 
+    saveToLocalStorage('students', students);
     log(`Added student: ${name}`);
     updateStudentSelects();
 }
@@ -137,6 +139,8 @@ function assignResidence() {
         let residence = residences[residenceIndex];
 
         student.assignResidence(residence);
+        saveToLocalStorage('students', students);
+        saveToLocalStorage('residences', residences);
         log(`Assigned ${student.name} to ${residence.name}`);
     }
 }
@@ -156,6 +160,8 @@ function submitMaintenanceRequest() {
         let student = students[studentIndex];
         let request = student.submitMaintenanceRequest(description);
         maintenanceRequests.push(request);
+
+        saveToLocalStorage('maintenanceRequests', maintenanceRequests);
         log(`Maintenance request submitted by ${student.name}: ${description}`);
     }
 }
@@ -188,3 +194,19 @@ function updateStudentSelects() {
 function log(message) {
     document.getElementById('output').innerHTML += message + '<br>';
 }
+
+// Utility functions for local storage
+function saveToLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function loadFromLocalStorage(key) {
+    let data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+}
+
+// Load initial data from local storage on page load
+document.addEventListener('DOMContentLoaded', () => {
+    updateResidenceSelect();
+    updateStudentSelects();
+});

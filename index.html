@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Residence Management System Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>University Residence Management System Demo</h1>
+
+    <div class="section">
+        <h2>Add Residence:</h2>
+        <div class="input-group">
+            <label for="residenceName">Residence Name:</label>
+            <input id="residenceName" placeholder="Name">
+        </div>
+        <div class="input-group">
+            <label for="residenceAddress">Residence Address:</label>
+            <input id="residenceAddress" placeholder="Address">
+        </div>
+        <div class="input-group">
+            <label for="residenceSize">Residence Size:</label>
+            <input id="residenceSize" placeholder="Size/Bedrooms">
+        </div>
+        <div class="input-group">
+            <label for="residenceType">Residence Type:</label>
+            <select id="residenceType" name="residenceType">
+                <option value="dorm">Dorm Room</option>
+                <option value="apartment">Apartment</option>
+            </select>
+        </div>
+        <button type="button" onclick="addResidence()">Add Residence</button>
+    </div>
+
+    <div class="section">
+        <h2>Add Student:</h2>
+        <div class="input-group">
+            <label for="studentName">Student Name:</label>
+            <input id="studentName" placeholder="Name">
+        </div>
+        <div class="input-group">
+            <label for="studentId">Student ID:</label>
+            <input id="studentId" placeholder="Student ID">
+        </div>
+        <div class="input-group">
+            <label for="studentGender">Student Gender:</label>
+            <input id="studentGender" placeholder="Gender">
+        </div>
+        <button type="button" onclick="addStudent()">Add Student</button>
+    </div>
+
+    <div class="section">
+        <h2>Assign Residence:</h2>
+        <div class="input-group">
+            <label for="studentSelect">Student Select:</label>
+            <select id="studentSelect"></select>
+        </div>
+        <div class="input-group">
+            <label for="residenceSelect">Residence Select:</label>
+            <select id="residenceSelect"></select>
+        </div>
+        <button onclick="assignResidence()">Assign Residence</button>
+    </div>
+
+    <button type="button" id="calculateRents" onclick="calculateAllRents()">Calculate All Rents</button>
+
+    <div class="section">
+        <h2>Submit Maintenance Request:</h2>
+        <div class="input-group">
+            <label for="studentSelectMaintenance">Select Student:</label>
+            <select id="studentSelectMaintenance"></select>
+        </div>
+        <div class="input-group">
+            <label for="maintenanceDescription">Description:</label>
+            <input id="maintenanceDescription" placeholder="Description">
+        </div>
+        <button type="button" onclick="submitMaintenanceRequest()">Submit Request</button>
+    </div>
+
+    <div id="output"></div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
